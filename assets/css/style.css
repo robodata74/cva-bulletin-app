@@ -1,0 +1,200 @@
+/* =========================
+   CVA BULLETIN – BASE STYLES
+   Author: Cornerstones Vision Academy
+   Year: 2026
+   ========================= */
+
+:root {
+    --bg-main: #0f172a;          /* deep academic navy */
+    --bg-card: #111827;          /* article cards */
+    --text-main: #e5e7eb;        /* primary text */
+    --text-muted: #9ca3af;       /* secondary text */
+    --accent: #38bdf8;           /* trust / action color */
+    --border-soft: #1f2933;      /* card & footer borders */
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    --transition-speed: 0.2s;    /* consistent hover transitions */
+}
+
+/* =========================
+   GLOBAL RESET
+   ========================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #020617;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+header img {
+    height: 60px;
+    display: block;
+}
+
+header nav a {
+    margin-left: 1.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color var(--transition-speed) ease;
+}
+
+header nav a:hover {
+    color: #22d3ee; /* slightly lighter accent on hover */
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+main {
+    flex: 1 0 auto;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.25rem;
+}
+
+/* =========================
+   ARTICLE FEED CARDS
+   ========================= */
+.article-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.article-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.article-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.article-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.article-card p {
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+/* =========================
+   SINGLE ARTICLE PAGE
+   ========================= */
+.article-full {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    margin-bottom: 2rem;
+}
+
+.article-full h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.article-full .article-meta {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.article-full p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* =========================
+   BUTTONS / INTERACTIONS
+   ========================= */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: var(--bg-main);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.btn:hover {
+    background-color: #22d3ee;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-soft);
+    background-color: #020617;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav {
+        margin-top: 0.5rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card, .article-full {
+        padding: 1rem;
+    }
+
+    header nav a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+    }
+}
