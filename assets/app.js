@@ -1,22 +1,22 @@
 /* =========================================================
    CVA BULLETIN MINI APP
    Full Client Logic (Feed, Article, Likes, Comments)
+   Author: Cornerstones Vision Academy
+   Year: 2026
    ========================================================= */
 
 /* =========================
-   CONFIG (FUTURE GATES)
+   CONFIGURATION
    ========================= */
-
 const CONFIG = {
-    commentsEnabled: true,   // can be gated later
-    likesEnabled: true,      // can be gated later
-    requireMembership: false // flip to true when ready
+    commentsEnabled: true,       // Toggle comment system
+    likesEnabled: true,          // Toggle like system
+    requireMembership: false     // Toggle membership gating
 };
 
 /* =========================
-   MOCK DATA (REPLACE WITH API)
+   MOCK DATA (Replace with API)
    ========================= */
-
 const articles = [
     {
         id: 1,
@@ -45,49 +45,46 @@ const articles = [
 ];
 
 /* =========================
-   UTILITIES
+   UTILITY FUNCTIONS
    ========================= */
+const utils = {
+    getQueryParam: (param) => new URLSearchParams(window.location.search).get(param),
 
-function getQueryParam(param) {
-    return new URLSearchParams(window.location.search).get(param);
-}
+    formatDate: (isoString) => new Date(isoString).toLocaleString()
+};
 
 /* =========================
-   LIKES SYSTEM
+   LOCAL STORAGE HANDLERS
    ========================= */
+const storage = {
+    getLikes: () => JSON.parse(localStorage.getItem("cva_likes")) || {},
+    saveLikes: (likes) => localStorage.setItem("cva_likes", JSON.stringify(likes)),
 
-function getLikes() {
-    return JSON.parse(localStorage.getItem("cva_likes")) || {};
-}
+    getComments: () => JSON.parse(localStorage.getItem("cva_comments")) || {},
+    saveComments: (comments) => localStorage.setItem("cva_comments", JSON.stringify(comments))
+};
 
-function saveLikes(likes) {
-    localStorage.setItem("cva_likes", JSON.stringify(likes));
-}
-
+/* =========================
+   LIKE SYSTEM
+   ========================= */
 function toggleLike(articleId) {
     if (!CONFIG.likesEnabled) return;
-    const likes = getLikes();
+
+    const likes = storage.getLikes();
     likes[articleId] = (likes[articleId] || 0) + 1;
-    saveLikes(likes);
+    storage.saveLikes(likes);
+
+    // Refresh article or feed
     renderArticle();
 }
 
 /* =========================
-   COMMENTS SYSTEM
+   COMMENT SYSTEM
    ========================= */
-
-function getComments() {
-    return JSON.parse(localStorage.getItem("cva_comments")) || {};
-}
-
-function saveComments(comments) {
-    localStorage.setItem("cva_comments", JSON.stringify(comments));
-}
-
 function addComment(articleId, name, text) {
     if (!CONFIG.commentsEnabled) return;
 
-    const comments = getComments();
+    const comments = storage.getComments();
     if (!comments[articleId]) comments[articleId] = [];
 
     comments[articleId].push({
@@ -96,17 +93,18 @@ function addComment(articleId, name, text) {
         date: new Date().toISOString()
     });
 
-    saveComments(comments);
+    storage.saveComments(comments);
     renderArticle();
 }
 
 /* =========================
-   FEED RENDER
+   FEED RENDERING
    ========================= */
-
 function renderFeed() {
-    const feed = document.getElementById("feed");
-    if (!feed) return;
+    const feedContainer = document.getElementById("feed");
+    if (!feedContainer) return;
+
+    feedContainer.innerHTML = ""; // Clear before rendering
 
     articles.forEach(article => {
         const card = document.createElement("article");
@@ -124,19 +122,18 @@ function renderFeed() {
             <p>${article.excerpt}</p>
         `;
 
-        feed.appendChild(card);
+        feedContainer.appendChild(card);
     });
 }
 
 /* =========================
-   SINGLE ARTICLE RENDER
+   SINGLE ARTICLE RENDERING
    ========================= */
-
 function renderArticle() {
     const container = document.getElementById("article-content");
     if (!container) return;
 
-    const articleId = parseInt(getQueryParam("id"), 10);
+    const articleId = parseInt(utils.getQueryParam("id"), 10);
     const article = articles.find(a => a.id === articleId);
 
     if (!article) {
@@ -144,58 +141,40 @@ function renderArticle() {
         return;
     }
 
-    const likes = getLikes();
+    const likes = storage.getLikes();
     const likeCount = likes[article.id] || 0;
-    const comments = getComments()[article.id] || [];
+    const comments = storage.getComments()[article.id] || [];
 
     container.innerHTML = `
         <article class="article-full">
             <h2>${article.title}</h2>
-
             <div class="article-meta">
                 ${article.author} · ${article.date}
             </div>
-
             ${article.image ? `<img src="${article.image}" alt="${article.title}" style="width:100%;margin:1.5rem 0;border-radius:8px;">` : ""}
-
             ${CONFIG.likesEnabled ? `
-                <button onclick="toggleLike(${article.id})"
-                        style="margin-bottom:1rem;padding:0.5rem 1rem;">
+                <button onclick="toggleLike(${article.id})" class="btn">
                     👍 Like (${likeCount})
                 </button>
             ` : ""}
-
             ${article.content}
-
             ${CONFIG.commentsEnabled ? `
                 <section style="margin-top:3rem;">
                     <h3>Comments</h3>
-
                     <form onsubmit="
                         event.preventDefault();
-                        addComment(
-                            ${article.id},
-                            this.name.value,
-                            this.comment.value
-                        );
+                        addComment(${article.id}, this.name.value, this.comment.value);
                         this.reset();
                     ">
-                        <input required name="name" placeholder="Your name"
-                               style="width:100%;padding:0.5rem;margin-bottom:0.5rem;">
-                        <textarea required name="comment" placeholder="Write a comment"
-                                  style="width:100%;padding:0.5rem;"></textarea>
-                        <button type="submit" style="margin-top:0.5rem;">
-                            Post Comment
-                        </button>
+                        <input required name="name" placeholder="Your name" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;">
+                        <textarea required name="comment" placeholder="Write a comment" style="width:100%;padding:0.5rem;"></textarea>
+                        <button type="submit" class="btn" style="margin-top:0.5rem;">Post Comment</button>
                     </form>
-
                     <div style="margin-top:1.5rem;">
                         ${comments.map(c => `
                             <div style="margin-bottom:1rem;border-bottom:1px solid #1f2933;padding-bottom:0.5rem;">
                                 <strong>${c.name}</strong>
-                                <div style="font-size:0.75rem;color:#9ca3af;">
-                                    ${new Date(c.date).toLocaleString()}
-                                </div>
+                                <div style="font-size:0.75rem;color:#9ca3af;">${utils.formatDate(c.date)}</div>
                                 <p>${c.text}</p>
                             </div>
                         `).join("")}
@@ -207,10 +186,9 @@ function renderArticle() {
 }
 
 /* =========================
-   INIT
+   INITIALIZATION
    ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-    renderFeed();
-    renderArticle();
+    renderFeed();     // Render feed if on home page
+    renderArticle();  // Render single article if on article page
 });
