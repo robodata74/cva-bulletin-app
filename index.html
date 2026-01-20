@@ -26,15 +26,17 @@
          HEADER
          ========================= -->
     <header role="banner">
-        <div class="header-inner">
-            <h1>
-                <a href="index.html" style="color:inherit;text-decoration:none;">
-                    Cornerstones Vision Academy Bulletin
-                </a>
-            </h1>
+        <div class="header-inner" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#ffffff;box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+            
+            <!-- Logo -->
+            <a href="index.html" aria-label="Cornerstones Vision Academy Homepage">
+                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo" style="height:60px;">
+            </a>
 
+            <!-- Navigation -->
             <nav role="navigation" aria-label="Main navigation">
-                <a href="index.html">Home</a>
+                <a href="index.html" style="margin-left:1.5rem;text-decoration:none;color:#1f2933;font-weight:500;">Home</a>
+                <!-- Future menu links can be added here -->
             </nav>
         </div>
     </header>
@@ -42,30 +44,33 @@
     <!-- =========================
          MAIN CONTENT
          ========================= -->
-    <main id="main-content" role="main">
+    <main id="main-content" role="main" style="padding:2rem;">
         <section aria-labelledby="bulletin-heading">
-            <h2 id="bulletin-heading" style="margin-bottom:1.5rem;">
+            <h2 id="bulletin-heading" style="margin-bottom:1.5rem;color:#111827;font-size:1.75rem;">
                 Latest Articles
             </h2>
 
-            <!-- Feed injected here -->
-            <div id="feed">
+            <!-- Article Feed -->
+            <div id="feed" style="display:grid;gap:2rem;">
                 <!-- JS renders article cards -->
             </div>
-        </section>
 
-        <noscript>
-            <p style="margin-top:2rem;">
-                JavaScript is required to view the bulletin feed.
-            </p>
-        </noscript>
+            <noscript>
+                <p style="margin-top:2rem;color:#6b7280;">
+                    JavaScript is required to view the bulletin feed.
+                </p>
+            </noscript>
+        </section>
     </main>
 
     <!-- =========================
          FOOTER
          ========================= -->
-    <footer role="contentinfo">
-        <p>&copy; 2026 Cornerstones Vision Academy. All rights reserved.</p>
+    <footer role="contentinfo" style="text-align:center;padding:2rem 1rem;background:#f8f8f8;color:#1f2933;font-size:0.9rem;">
+        <p>
+            &copy; 2026 Cornerstones Vision Academy. All rights reserved.<br>
+            Contact: <a href="mailto:info@cornerstonesvisionacademy.org" style="color:#1f2933;">info@cornerstonesvisionacademy.org</a> | +254 700 000 000
+        </p>
     </footer>
 
     <!-- =========================
