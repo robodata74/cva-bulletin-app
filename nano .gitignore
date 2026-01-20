@@ -1,0 +1,13 @@
+# Node / tooling
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
+.env
+api/db.php
+
+# Logs
+*.log
