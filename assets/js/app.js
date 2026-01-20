@@ -49,7 +49,6 @@ const articles = [
    ========================= */
 const utils = {
     getQueryParam: (param) => new URLSearchParams(window.location.search).get(param),
-
     formatDate: (isoString) => new Date(isoString).toLocaleString()
 };
 
@@ -152,11 +151,7 @@ function renderArticle() {
                 ${article.author} · ${article.date}
             </div>
             ${article.image ? `<img src="${article.image}" alt="${article.title}" style="width:100%;margin:1.5rem 0;border-radius:8px;">` : ""}
-            ${CONFIG.likesEnabled ? `
-                <button onclick="toggleLike(${article.id})" class="btn">
-                    👍 Like (${likeCount})
-                </button>
-            ` : ""}
+            ${CONFIG.likesEnabled ? `<button onclick="toggleLike(${article.id})" class="btn">👍 Like (${likeCount})</button>` : ""}
             ${article.content}
             ${CONFIG.commentsEnabled ? `
                 <section style="margin-top:3rem;">
