@@ -5,7 +5,7 @@
          BASIC META
          ========================= -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVA Bulletin Article | Cornerstones Vision Academy</title>
     <meta name="description" content="Official CVA Bulletin article at Cornerstones Vision Academy. Read news, culture, achievements, and updates.">
 
@@ -26,9 +26,15 @@
          ========================= -->
     <header role="banner">
         <div class="header-inner">
-            <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo">
+            <!-- Logo -->
+            <a href="index.html" aria-label="Cornerstones Vision Academy Homepage">
+                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo">
+            </a>
+
+            <!-- Navigation -->
             <nav role="navigation" aria-label="Main navigation">
                 <a href="index.html">Home</a>
+                <!-- Future links: About, Articles, Contact -->
             </nav>
         </div>
     </header>
@@ -37,21 +43,25 @@
          ARTICLE CONTENT
          ========================= -->
     <main id="article-content" role="main">
-        <!-- JS will render single article here -->
+        <!-- JavaScript will dynamically render the article here -->
     </main>
 
     <noscript>
-        <p style="margin-top:2rem;">
-            JavaScript is required to view the bulletin article.
+        <p class="no-js-warning" style="margin-top:2rem;color:#6b7280;">
+            JavaScript is required to view this bulletin article.
         </p>
     </noscript>
 
     <!-- =========================
          FOOTER
          ========================= -->
-    <footer role="contentinfo">
-        <p>&copy; 2026 Cornerstones Vision Academy. All rights reserved.</p>
-        <p>Contact: info@cornerstonesvisionacademy.org</p>
+    <footer role="contentinfo" style="background-color:#1f2933;color:#e5e7eb;">
+        <div class="footer-inner" style="max-width:900px;margin:0 auto;padding:2rem 1rem;text-align:center;">
+            <p>
+                &copy; 2026 Cornerstones Vision Academy. All rights reserved.<br>
+                Contact: <a href="mailto:info@cornerstonesvisionacademy.org" style="color:#38bdf8;">info@cornerstonesvisionacademy.org</a> | +211 925 884 118 | Aweil, South Sudan
+            </p>
+        </div>
     </footer>
 
     <!-- =========================
