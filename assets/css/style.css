@@ -4,16 +4,19 @@
    Year: 2026
    ========================= */
 
+/* =========================
+   ROOT VARIABLES
+   ========================= */
 :root {
-    --bg-main: #0f172a;          /* deep academic navy */
-    --bg-overlay: rgba(8, 30, 60, 0.4); /* subtle blue overlay for main */
-    --bg-card: #111827;          /* article cards */
-    --text-main: #e5e7eb;        /* primary text */
-    --text-muted: #9ca3af;       /* secondary text */
-    --accent: #38bdf8;           /* trust / action color */
-    --border-soft: #1f2933;      /* card & footer borders */
+    --bg-main: #0f172a;                   /* deep academic navy */
+    --bg-overlay: rgba(8, 30, 60, 0.4);  /* subtle blue overlay for main content */
+    --bg-card: #111827;                   /* article cards */
+    --text-main: #e5e7eb;                 /* primary text */
+    --text-muted: #9ca3af;                /* secondary text */
+    --accent: #38bdf8;                    /* action / trust color */
+    --border-soft: #1f2933;               /* card & footer borders */
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-    --transition-speed: 0.2s;    /* consistent hover transitions */
+    --transition-speed: 0.2s;             /* consistent hover transitions */
 }
 
 /* =========================
@@ -47,6 +50,8 @@ header {
     padding: 1rem 2rem;
     background-color: #020617;
     border-bottom: 1px solid var(--border-soft);
+    z-index: 2;
+    position: relative;
 }
 
 header img {
@@ -76,6 +81,7 @@ main {
     margin: 2rem auto;
     padding: 0 1.25rem;
     position: relative;
+    z-index: 1;
 }
 
 main::before {
@@ -137,6 +143,7 @@ main::before {
     border-radius: 12px;
     border: 1px solid var(--border-soft);
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .article-full h2 {
@@ -154,6 +161,25 @@ main::before {
 .article-full p {
     margin-bottom: 1.5rem;
     font-size: 1rem;
+}
+
+.article-full img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    display: block;
+    position: relative;
+}
+
+.article-full img::after {
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(56,189,248,0.2); /* subtle blue overlay */
+    border-radius: 8px;
 }
 
 /* =========================
