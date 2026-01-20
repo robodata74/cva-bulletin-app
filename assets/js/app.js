@@ -9,13 +9,13 @@
    CONFIGURATION
    ========================= */
 const CONFIG = {
-    commentsEnabled: true,       // Toggle comment system
-    likesEnabled: true,          // Toggle like system
-    requireMembership: false     // Toggle membership gating
+    commentsEnabled: true,
+    likesEnabled: true,
+    requireMembership: false
 };
 
 /* =========================
-   MOCK DATA (Replace with API)
+   MOCK DATA
    ========================= */
 const articles = [
     {
@@ -58,7 +58,6 @@ const utils = {
 const storage = {
     getLikes: () => JSON.parse(localStorage.getItem("cva_likes")) || {},
     saveLikes: (likes) => localStorage.setItem("cva_likes", JSON.stringify(likes)),
-
     getComments: () => JSON.parse(localStorage.getItem("cva_comments")) || {},
     saveComments: (comments) => localStorage.setItem("cva_comments", JSON.stringify(comments))
 };
@@ -73,7 +72,6 @@ function toggleLike(articleId) {
     likes[articleId] = (likes[articleId] || 0) + 1;
     storage.saveLikes(likes);
 
-    // Refresh article or feed
     renderArticle();
 }
 
@@ -103,21 +101,20 @@ function renderFeed() {
     const feedContainer = document.getElementById("feed");
     if (!feedContainer) return;
 
-    feedContainer.innerHTML = ""; // Clear before rendering
+    feedContainer.innerHTML = "";
 
     articles.forEach(article => {
         const card = document.createElement("article");
         card.className = "article-card";
 
         card.innerHTML = `
+            ${article.image ? `<img src="${article.image}" alt="${article.title}" style="width:100%;max-height:200px;object-fit:cover;border-radius:8px;margin-bottom:1rem;">` : ""}
             <h2>
                 <a href="article.html?id=${article.id}" style="color:inherit;text-decoration:none;">
                     ${article.title}
                 </a>
             </h2>
-            <div class="article-meta">
-                ${article.author} · ${article.date}
-            </div>
+            <div class="article-meta">${article.author} · ${article.date}</div>
             <p>${article.excerpt}</p>
         `;
 
@@ -147,10 +144,8 @@ function renderArticle() {
     container.innerHTML = `
         <article class="article-full">
             <h2>${article.title}</h2>
-            <div class="article-meta">
-                ${article.author} · ${article.date}
-            </div>
-            ${article.image ? `<img src="${article.image}" alt="${article.title}" style="width:100%;margin:1.5rem 0;border-radius:8px;">` : ""}
+            <div class="article-meta">${article.author} · ${article.date}</div>
+            ${article.image ? `<img src="${article.image}" alt="${article.title}">` : ""}
             ${CONFIG.likesEnabled ? `<button onclick="toggleLike(${article.id})" class="btn">👍 Like (${likeCount})</button>` : ""}
             ${article.content}
             ${CONFIG.commentsEnabled ? `
@@ -181,9 +176,26 @@ function renderArticle() {
 }
 
 /* =========================
+   ADD DUMMY ARTICLE BUTTON
+   ========================= */
+document.getElementById("add-article-btn")?.addEventListener("click", () => {
+    const newId = articles.length + 1;
+    articles.push({
+        id: newId,
+        title: `New Dummy Article ${newId}`,
+        author: "Admin",
+        date: new Date().toISOString().split("T")[0],
+        excerpt: "This is a placeholder excerpt for a new article.",
+        image: "assets/images/culture-creativity.jpg",
+        content: `<p>This is dummy content for the new article.</p>`
+    });
+    renderFeed();
+});
+
+/* =========================
    INITIALIZATION
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-    renderFeed();     // Render feed if on home page
-    renderArticle();  // Render single article if on article page
+    renderFeed();
+    renderArticle();
 });
