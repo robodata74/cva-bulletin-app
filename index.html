@@ -1,26 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- =========================
+         BASIC META
+         ========================= -->
     <meta charset="UTF-8">
-    <title>CVA Bulletin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CVA Bulletin | Cornerstones Vision Academy</title>
+    <meta name="description" content="Official CVA Bulletin featuring news, culture, achievements, and academic life at Cornerstones Vision Academy.">
+
+    <!-- =========================
+         STYLES
+         ========================= -->
     <link rel="stylesheet" href="assets/style.css">
+
+    <!-- =========================
+         SEO
+         ========================= -->
+    <meta name="robots" content="index, follow">
 </head>
+
 <body>
-    <header>
-        <h1>Cornerstones Vision Academy Bulletin</h1>
-        <nav>
-            <a href="index.html">Home</a>
-        </nav>
+    <!-- =========================
+         HEADER
+         ========================= -->
+    <header role="banner">
+        <div class="header-inner">
+            <h1>
+                <a href="index.html" style="color:inherit;text-decoration:none;">
+                    Cornerstones Vision Academy Bulletin
+                </a>
+            </h1>
+
+            <nav role="navigation" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+            </nav>
+        </div>
     </header>
 
-    <main id="bulletin-feed">
-        <!-- Posts will appear here -->
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
+    <main id="main-content" role="main">
+        <section aria-labelledby="bulletin-heading">
+            <h2 id="bulletin-heading" style="margin-bottom:1.5rem;">
+                Latest Articles
+            </h2>
+
+            <!-- Feed injected here -->
+            <div id="feed">
+                <!-- JS renders article cards -->
+            </div>
+        </section>
+
+        <noscript>
+            <p style="margin-top:2rem;">
+                JavaScript is required to view the bulletin feed.
+            </p>
+        </noscript>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Cornerstones Vision Academy</p>
+    <!-- =========================
+         FOOTER
+         ========================= -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Cornerstones Vision Academy. All rights reserved.</p>
     </footer>
 
-    <script src="assets/app.js"></script>
+    <!-- =========================
+         SCRIPTS
+         ========================= -->
+    <script src="assets/app.js" defer></script>
 </body>
 </html>
