@@ -27,14 +27,13 @@
     <header role="banner">
         <div class="header-inner">
             <!-- Logo -->
-            <a href="index.html" aria-label="Cornerstones Vision Academy Homepage">
-                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo">
+            <a href="index.html" aria-label="Cornerstones Vision Academy Homepage" class="logo-link">
+                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo" class="logo">
             </a>
 
             <!-- Navigation -->
             <nav role="navigation" aria-label="Main navigation">
                 <a href="index.html">Home</a>
-                <!-- Future links can be added here -->
             </nav>
         </div>
     </header>
@@ -45,6 +44,11 @@
     <main id="main-content" role="main">
         <section aria-labelledby="bulletin-heading">
             <h2 id="bulletin-heading">Latest Articles</h2>
+
+            <!-- Add Article Button -->
+            <div style="margin-bottom:2rem;">
+                <button id="add-article-btn" class="btn">+ Add New Article</button>
+            </div>
 
             <!-- Article Feed -->
             <div id="feed">
