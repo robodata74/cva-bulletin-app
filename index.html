@@ -5,7 +5,7 @@
          BASIC META
          ========================= -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>CVA Bulletin | Cornerstones Vision Academy</title>
     <meta name="description" content="Official CVA Bulletin featuring news, culture, achievements, and academic life at Cornerstones Vision Academy.">
@@ -13,30 +13,29 @@
     <!-- =========================
          STYLES
          ========================= -->
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- =========================
          SEO
          ========================= -->
     <meta name="robots" content="index, follow">
 </head>
-
 <body>
+
     <!-- =========================
          HEADER
          ========================= -->
     <header role="banner">
-        <div class="header-inner" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#ffffff;box-shadow:0 2px 4px rgba(0,0,0,0.05);">
-            
+        <div class="header-inner">
             <!-- Logo -->
             <a href="index.html" aria-label="Cornerstones Vision Academy Homepage">
-                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo" style="height:60px;">
+                <img src="assets/images/logo_full.png" alt="Cornerstones Vision Academy Logo">
             </a>
 
             <!-- Navigation -->
             <nav role="navigation" aria-label="Main navigation">
-                <a href="index.html" style="margin-left:1.5rem;text-decoration:none;color:#1f2933;font-weight:500;">Home</a>
-                <!-- Future menu links can be added here -->
+                <a href="index.html">Home</a>
+                <!-- Future links: About, Articles, Contact -->
             </nav>
         </div>
     </header>
@@ -44,19 +43,17 @@
     <!-- =========================
          MAIN CONTENT
          ========================= -->
-    <main id="main-content" role="main" style="padding:2rem;">
-        <section aria-labelledby="bulletin-heading">
-            <h2 id="bulletin-heading" style="margin-bottom:1.5rem;color:#111827;font-size:1.75rem;">
-                Latest Articles
-            </h2>
+    <main id="main-content" role="main">
+        <section aria-labelledby="bulletin-heading" class="feed-section">
+            <h2 id="bulletin-heading">Latest Articles</h2>
 
             <!-- Article Feed -->
-            <div id="feed" style="display:grid;gap:2rem;">
-                <!-- JS renders article cards -->
+            <div id="feed" class="feed-grid">
+                <!-- JS will render article cards here -->
             </div>
 
             <noscript>
-                <p style="margin-top:2rem;color:#6b7280;">
+                <p class="no-js-warning">
                     JavaScript is required to view the bulletin feed.
                 </p>
             </noscript>
@@ -66,16 +63,18 @@
     <!-- =========================
          FOOTER
          ========================= -->
-    <footer role="contentinfo" style="text-align:center;padding:2rem 1rem;background:#f8f8f8;color:#1f2933;font-size:0.9rem;">
-        <p>
-            &copy; 2026 Cornerstones Vision Academy. All rights reserved.<br>
-            Contact: <a href="mailto:info@cornerstonesvisionacademy.org" style="color:#1f2933;">info@cornerstonesvisionacademy.org</a> | +254 700 000 000
-        </p>
+    <footer role="contentinfo">
+        <div class="footer-inner">
+            <p>
+                &copy; 2026 Cornerstones Vision Academy. All rights reserved.<br>
+                Contact: <a href="mailto:info@cornerstonesvisionacademy.org">info@cornerstonesvisionacademy.org</a> | +211 925 884 118 | Aweil, South Sudan
+            </p>
+        </div>
     </footer>
 
     <!-- =========================
          SCRIPTS
          ========================= -->
-    <script src="assets/app.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
 </body>
 </html>
